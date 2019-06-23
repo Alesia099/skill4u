@@ -1,1 +1,1 @@
-web: gunicorn skill.wsgi --log-file -
+web: gunicorn skill.wsgi
