@@ -12,7 +12,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name_validator = FullNameValidator
 
     email = models.EmailField(_('email'), unique=True)
-    full_name = models.CharField(_('full_name'), max_length=100, blank=True, unique=True)
+    full_name = models.CharField(_('full_name'), max_length=100, blank=True)
     #birthday = models.DateField(_("birthday"), validators=[validate_birthday], blank=True)
     region = models.CharField(_("region"), max_length=50)
     city = models.CharField(_("city"), max_length=50)
@@ -30,7 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['email']
 
     class Meta:
         verbose_name = _('user')

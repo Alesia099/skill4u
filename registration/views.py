@@ -18,13 +18,13 @@ from rest_framework.status import (
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def login(request):
-    full_name = request.data.get("full_name")
+    email = request.data.get("email")
     password = request.data.get("password")
-    if full_name is None or password is None:
-        return Response({'error': 'Please provide both username and password'},
+    if email is None or password is None:
+        return Response({'error': 'Please provide both email and password'},
                         status=HTTP_400_BAD_REQUEST)
     try:
-        user = User.objects.get(full_name=full_name, password=password)
+        user = User.objects.get(full_name=email, password=password)
     except User.DoesNotExist:
         return Response({'error': 'Invalid Credentials'},
                         status=HTTP_404_NOT_FOUND)
