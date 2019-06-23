@@ -1,0 +1,3 @@
+__pucache__/
+*.pyc
+db.sqlite3
