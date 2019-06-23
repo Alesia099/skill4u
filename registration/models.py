@@ -5,58 +5,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from .validators import validate_birthday, FullNameValidator
 from phonenumber_field.modelfields import PhoneNumberField
-
-class UserManager(BaseUserManager):
-    use_in_migrations = True
-
-    def create_user(
-        self,
-        email,
-        username,
-        full_name,
-        birthday,
-        region,
-        city,
-        phone,
-        password,
-        **extra_fields
-    ):
-        email = self.normalize_email(email)
-        full_name = self.model.normalize_username(full_name)
-        extra_fields.setdefault("is_staff", False)
-        extra_fields.setdefault("is_superuser", False)
-        user = self.model(
-            email=email,
-            full_name=full_name,
-            birthday=birthday,
-            region=region,
-            city=city,
-            phone=phone,
-            **extra_fields
-        )
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(
-        self,
-        email,
-        password,
-        **extra_fields
-    ):
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
-
-        if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
-
-        return self._create_user(
-            email,
-            password,
-            **extra_fields
-        )
+from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
