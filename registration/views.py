@@ -24,7 +24,7 @@ def login(request):
         return Response({'error': 'Please provide both email and password'},
                         status=HTTP_400_BAD_REQUEST)
     try:
-        user = User.objects.get(full_name=email, password=password)
+        user = User.objects.get(email=email, password=password)
     except User.DoesNotExist:
         return Response({'error': 'Invalid Credentials'},
                         status=HTTP_404_NOT_FOUND)
