@@ -41,11 +41,6 @@ class UserManager(BaseUserManager):
     def create_superuser(
         self,
         email,
-        full_name,
-        birthday,
-        region,
-        city,
-        phone,
         password,
         **extra_fields
     ):
@@ -59,11 +54,6 @@ class UserManager(BaseUserManager):
 
         return self._create_user(
             email,
-            full_name,
-            birthday,
-            region,
-            city,
-            phone,
             password,
             **extra_fields
         )
