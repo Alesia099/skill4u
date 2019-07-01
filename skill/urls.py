@@ -14,15 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls import url
 from registration.views import create, example_view, login
 from django.conf.urls.static import static
 from django.conf import settings
+from olympiad.views import TaskAPI, TeamAPI, OlympiadAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', create),
     path('hello', example_view),
     path('login', login),
+    path('task', TaskAPI.as_view()),
+    path('team', TeamAPI.as_view()),
+    path('olympiad', OlympiadAPI.as_view()),
+    path('api-auth', include('rest_framework.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

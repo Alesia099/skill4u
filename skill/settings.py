@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'registration',
+    'olympiad',
     'phonenumber_field',
     'corsheaders',
 ]
@@ -148,5 +149,4 @@ DATABASES['default'].update(db_from_env)
 
 
 #CORS_HEADERS
-
 CORS_ORIGIN_ALLOW_ALL = True
