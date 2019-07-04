@@ -16,8 +16,11 @@ class Task(models.Model):
 class Team(models.Model):
     """Teams for Olympiad"""
     capitan = models.ForeignKey(User, _("capitan"),)
-    invated = models.ManyToManyField(User, _("invated"),)
+    invited = models.ManyToManyField(User, _("invated"),)
     max_participations = models.IntegerField(_("max participations"), blank=False)
+
+    def __str__(self):
+        return '%s %s' % (self.capitan, self.invited)
 
 
 class Olympiad(models.Model):

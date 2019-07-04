@@ -19,7 +19,7 @@ from django.conf.urls import url
 from registration.views import create, example_view, login
 from django.conf.urls.static import static
 from django.conf import settings
-from olympiad.views import TaskAPI, TeamAPI, OlympiadAPI
+from olympiad.views import TaskAPI, TeamAPI, OlympiadAPI, InviteToTeam
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('login', login),
     path('task', TaskAPI.as_view()),
     path('team', TeamAPI.as_view()),
+    path('team/invite', InviteToTeam.as_view()),
     path('olympiad', OlympiadAPI.as_view()),
     path('api-auth', include('rest_framework.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

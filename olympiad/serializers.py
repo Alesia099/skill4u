@@ -11,10 +11,11 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class TeamSerializer(serializers.ModelSerializer):
     capitan = UserSerializer()
+    invited = UserSerializer(many=True)
 
     class Meta:
         model = Team
-        fields = ('id', 'capitan', 'max_participations')
+        fields = ('id', 'capitan', 'invited', 'max_participations')
 
 
 class OlympiadSerializer(serializers.ModelSerializer):
